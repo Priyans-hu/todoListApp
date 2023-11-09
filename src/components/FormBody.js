@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const FormBody = ({ input, setInput, todos, setTodos }) => {
-    const inputChangeHandler = (e) => {
-        setInput(e.target.value);
-    }
+const FormBody = ({ addTask }) => {
+    const [taskname, setTaskname] = useState('');
 
-    const formSubmissionHandler = (event) => {
-        event.preventDefault();
-        console.log(input);        
-        setInput("");
-        setTodos([...todos, { title: input, completed: false }]);
+    const submitHandler = (e) => {
+        e.preventDefault();
+        addTask(taskname);
+        setTaskname('');
     }
 
     return (
-        <form className='py-2' onSubmit={formSubmissionHandler}>
+        <form className='py-2' onSubmit={submitHandler}>
             <div className="form-row align-items-center">
                 <div className="w-75 col-sm-5 my-1">
                     <label className="sr-only" htmlFor="inlineFormInputName">Name</label>
-                    <input type="text" className="form-control" id="inlineFormInputName" placeholder='Get milk' onChange={inputChangeHandler} value={input} />
+                    <input 
+                        type="text" 
+                        className="form-control" 
+                        id="inlineFormInputName" 
+                        placeholder='Get milk' 
+                        value={taskname} 
+                        onChange={(e) => setTaskname(e.target.value)}/>
                 </div>
                 <div className="col-auto my-1">
-                    <button type="submit" className="btn btn-primary" title='Add Task'><i className="fa-solid fa-plus"></i></button>
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary" 
+                        title='Add Task'>
+                            <i className="fa-solid fa-plus"></i>
+                    </button>
                 </div>
             </div>
         </form>

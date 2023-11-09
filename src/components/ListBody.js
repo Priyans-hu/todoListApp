@@ -2,16 +2,17 @@ import './styles/ListBody.css';
 import React from 'react'
 import Addnewtaskform from './Addnewtaskform.js';
 import PendingTasks from './PendingTasks.js';
-import { useState } from 'react';
 
-export default function ListBody() {
-    const [input, setInput] = useState("");
-    const [todos, setTodos] = useState([]);
-
+export default function ListBody({ todos, setTodos, handleDelete, handleStatus, addTask}) {
     return(
         <div className='ListBodyContainer container mx-auto'>
-            <Addnewtaskform input={input} setInput={setInput} todos={todos} setTodos={setTodos}/>
-            <PendingTasks />
+            <Addnewtaskform addTask={addTask}/>
+            <PendingTasks 
+                todos={todos} 
+                setTodos={setTodos} 
+                handleDelete={handleDelete} 
+                handleStatus={handleStatus
+            }/>
         </div>
     );
 };
