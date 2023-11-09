@@ -5,6 +5,12 @@ const FormBody = ({ addTask }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        
+        if(!taskname){
+            alert("Please enter something");
+            return;
+        }
+        
         addTask(taskname);
         setTaskname('');
     }

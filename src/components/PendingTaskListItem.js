@@ -2,7 +2,7 @@ import React from 'react';
 import CheckBox from './CheckBox.js';
 import FormActions from './FormAction.js';
 
-export default function PendingTaskListItem({ id, taskname, onDelete, status, handleStatus }) {
+export default function PendingTaskListItem({ id, taskname, onDelete, status, handleStatus, editTask }) {
     return (
         <li className={`list-group-item col-lg-5 my-2 rounded
             text-left justify-content-between align-items-center d-flex
@@ -13,7 +13,10 @@ export default function PendingTaskListItem({ id, taskname, onDelete, status, ha
                 <CheckBox id={id} status={status} handleStatus={handleStatus}/>
                 <p className='m-0 pl-4 d-inline'>{taskname}</p>
             </div>
-            <FormActions deleteButtonHandler={() => onDelete(id)} />
+            <FormActions 
+                deleteButtonHandler={() => onDelete(id)} 
+                editTask={() => editTask(id, 'Editing task')} 
+            />
         </li>
     );
 }

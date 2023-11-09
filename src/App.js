@@ -17,6 +17,15 @@ function App() {
         setTodos([...todos, newTodo]);
     }
 
+    const editTask = (id, newTaskname) => {
+        setTodos(todos.map(
+            todo => todo.id === id ?
+                {...todo, taskname: newTaskname} :
+            todo
+            )
+        );
+    }
+
     const handleDelete = (id) => {
         setTodos((prevTodos) => prevTodos.filter(todo => todo.id !== id));
     };
@@ -26,14 +35,21 @@ function App() {
             todo => todo.id === id ?
                 { ...todo, completed: !todo.completed } :
                 todo
-        )
+            )
         );
     }
 
     return (
         <div className="App container-fluid">
             <Navbar />
-            <ListBody todos={todos} setTodos={setTodos} handleDelete={handleDelete} handleStatus={handleStatus} addTask={handleAddTask}/>
+            <ListBody 
+                todos={todos} 
+                setTodos={setTodos} 
+                addTask={handleAddTask}
+                editTask={editTask}
+                handleDelete={handleDelete} 
+                handleStatus={handleStatus} 
+            />
         </div>
     );
 }
