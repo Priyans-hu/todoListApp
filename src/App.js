@@ -5,6 +5,7 @@ import ListBody from './components/ListBody.js';
 
 function App() {
     const [todos, setTodos] = useState([
+        { id: 4, taskname: 'Convert weather app into react code', completed: false },
         { id: 2, taskname: 'Go to gym', completed: false },
         { id: 1, taskname: 'Learn React', completed: true },
         { id: 3, taskname: 'Get milk and oranges', completed: false },
